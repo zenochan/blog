@@ -1,25 +1,26 @@
-# InputMeth #
+# InputMethod #
 
 ### 隐藏输入法
 
 ```java
-    public void hideInputMethod(Context context, View view)
-    {
-        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
+public void hideInputMethod(Context context, View view)
+{
+    InputMethodManager imm = 
+    	(InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+}
 ```
 ### 显示输入法
 
 ```java
-    /**
-     * @param view 接受软键盘输入的视图
-     */
-    public void showInputMethod(Context context, View view)
-    {
-        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(view, InputMethodManager.SHOW_FORCED);
-    }
+/**
+ * @param view 接受软键盘输入的视图
+ */
+public void showInputMethod(Context context, View view)
+{
+    InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+    imm.showSoftInput(view, InputMethodManager.SHOW_FORCED);
+}
 ```
 
 ### 响应输入法的操作按钮
@@ -66,27 +67,27 @@ SOFT_INPUT_ADJUST_UNSPECIFIED:  系统自己根据内容自行选择上两种方
 - 在 AndroidManifest.xml 中设置
 
 ```xml
-        <activity
-            android:name=".ui.activity.MainActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustUnspecified"
-            >
-            <!--android:windowSoftInputMode="adjustPan"-->
-            <!--android:windowSoftInputMode="adjustResize"-->
-        </activity>
+<activity
+    android:name=".ui.activity.MainActivity"
+    android:launchMode="singleTask"
+    android:screenOrientation="portrait"
+    android:windowSoftInputMode="adjustUnspecified"
+    >
+    <!--android:windowSoftInputMode="adjustPan"-->
+    <!--android:windowSoftInputMode="adjustResize"-->
+</activity>
 ```
 
 - 在 Activity 中设置
 
 ```java
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-    }
+@Override
+protected void onCreate(Bundle savedInstanceState)
+{
+    super.onCreate(savedInstanceState);
+    //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+}
 ```
 
 - [Android SoftInputMode为SOFT_INPUT_ADJUST_RESIZE（adjustResize）时没有resize动画的问题](http://blog.csdn.net/yellowcath/article/details/45893333)
