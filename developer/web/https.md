@@ -1,0 +1,1 @@
+[现在就启用 HTTPS，免费的！](http://www.oschina.net/translate/switch-to-https-now-for-free?cmp)
