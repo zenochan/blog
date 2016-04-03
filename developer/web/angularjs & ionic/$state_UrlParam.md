@@ -5,7 +5,7 @@
 $stateProvider.state('users',{
 	url:"/users/:userId",
 	//也可以使用花括号的方式指定参数
-	//url::"/users/{userId}",
+	//url:"/users/{userId}",
 	template:"templates/userinfo.html",
 	controller:function($stateParams){
 		//url '/users/zeno'
