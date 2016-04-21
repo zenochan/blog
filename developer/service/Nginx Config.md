@@ -59,8 +59,9 @@ location / {
 ### 重启 Nginx
 
 ```bash
-# nginx -s reload
-# service nginx restart
+# nginx -t					//检查 nginx 配置
+# nginx -s reload			//不停止服务重载配置
+# service nginx restart		//重新启动服务
 ```
 ### http basic authorization
 - [Nginx Http认证 实现访问网站或目录密码认证保护][a1]
