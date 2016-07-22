@@ -27,3 +27,15 @@ git config --global credential.helper store
 ```
 http://yourname:password@git.oschina.net/name/project.git 
 ```
+
+
+## git status 显示中文
+
+
+在中文情况下 git status是 “\344\272\247\345\223\201\351\234\200\346\261\202” 差不多这样的。
+
+解决这个问题方法是：
+
+```bash
+git config --global core.quotepath false
+```

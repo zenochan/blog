@@ -9,7 +9,7 @@
 > 李剑，曾为ThoughtWorks高级咨询师，InfoQ敏捷社区首席编辑。在2013年之前，一直致力于敏捷思想在国内的推广传播。 译作有《实现模式》、《硝烟中的Scrum和XP》等。现居墨尔本，曾参与过Telstra、MyOB、realestate.com.au 等多款App的开发。
 
 
-由于篇幅原因，群内分享的是精简后的版本，你可以[阅读原文](http://www.jianshu.com/p/d684693f1d77#rd)读到完整版本。
+由于篇幅原因，群内分享的是精简后的版本，你可以[阅读原文](http://www.jianshu.com/p/d684693f1d77#rd '高速公路换轮胎——为遗留系统替换数据库')读到完整版本。
 
 在过去的几个月内，我主导着团队完成了一项工程浩大（累积八个人月的工作量）的重构工作——为我们的App替换数据库。之所以能够把这种伤筋动骨的事情称之为重构，是因为在这段时间内，我们每天向主干合并两到三次代码，期间App上线五次，用户没有感知到任何影响。在这篇文章中，我将讲述我们如何在不影响系统外部行为，也不影响正常交付的情况下，替换掉了数据库实现。
 
@@ -66,7 +66,24 @@
 
 先看一段代码：
 
-![](./iOS遗留系统重构实践/5.jpeg)
+```objective-c
++ (UIStoryboard *)searchResultsStoryboard
+{
+	NSString *storyBoardName;
+	if([REAToggle shouldDisplayNewSearchResultsScreen])
+	{
+		storyBoardName = @"SearchResultsNewStoryBoard";
+	}
+	else
+	{
+		storyBoardName = @"SearchResultsStoryBoard";
+	}
+	
+	UIStroryboard *storyboard= [UIStroryboard storyboardWithName:storyBoardName bundle:nil];
+	
+	return storyboard;
+}
+```
 
 在这个例子中，我们要替换一个Storyboard的布局和相关ViewController的功能，耗时很久，如果直接在主干上修改，就会直接影响到现有的App，在功能完成之前都无法上线；如果拉一条分支出来做，未来就又会有大量的合并冲突。使用如上的特性开关就会避免上述问题。
 

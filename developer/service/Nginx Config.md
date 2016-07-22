@@ -7,7 +7,11 @@
 - Nginx配置proxy_pass转发的/路径问题
 - 开启 Nginx 的 gzip 压缩功能
 
----
+### Linux下怎么确定 Nginx 安装目录
+```bash
+$ ps -ef | grep nginx
+```
+
 
 ### Nginx 配置文件位置
 >
@@ -16,7 +20,7 @@
 
 ### 配置 Nginx 转发到 tomcat
 
-```
+```nginx
 server { 
     listen       80; 
     server_name  bbs.mian.name; 

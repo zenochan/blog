@@ -1,0 +1,2 @@
+- [保持 EditText 的简洁——在 Android 中对你所有的 EditText 实现文本监听](http://www.jianshu.com/p/0f6575472cb6)
+- [Android Design Support Library 中控件的使用简单介绍（一）](http://www.tuicool.com/articles/aeQrYv3)
