@@ -1,5 +1,11 @@
 # Android Permission
 
+---
+
+ - [案例学习 - 引导用户授权app发送通知的实战技巧](http://www.beforweb.com/node/758?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+
+---
+
 [Manifest.permission](http://developer.android.com/reference/android/Manifest.permission.html)
 
 ### [Normal Permissions](http://developer.android.com/guide/topics/security/normal-permissions.html)
