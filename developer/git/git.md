@@ -236,3 +236,9 @@ git reset 057d
 #回退到上一次提交的状态，按照某一次的commit完全反向的进行一次commit.(代码回滚到上个版本，并提交git)
 git revert HEAD
 ```
+
+### git status 中文显示
+
+```bash
+git config --global core.quotepath false
+```
