@@ -213,27 +213,86 @@ root@iZ23752urr5Z html# rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-re
 安装  2 软件包 (+7 依赖软件包)
   ```
   
+#### 权限
+
+1. 修改 fpm 对的用户和用户组
+
+``` 
+$ vi /etc/php-fpm.d/www.conf #编辑
+user = nginx #修改用户为nginx
+group = nginx #修改组为nginx
+$ service php-fpm restart
+```
+
+2. 设置部署目录的用户和用户组为 nginx
+
+```bash
+chown nginx.nginx /usr/share/nginx/html/ -R #设置目录所有者
+# chmod 700 /usr/share/nginx/html/ -R #设置目录权限
+```
+
 启动 php-fpm
 
 ```
 root@iZ23752urr5Z php# php-fpm -R
+systemctl start  php-fpm.service
+systemctl restart  php-fpm.service
+systemctl status php-fpm.service
 ```
 
-#### ngixn 配置
 
+#### php ngixn 配置
 
-```
-    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
-    #
-    location ~ \.php$ {
-        root           html;
-        fastcgi_pass   127.0.0.1:9000;
-        fastcgi_index  index.php;
-        fastcgi_param  SCRIPT_FILENAME  /usr/share/nginx/html$fastcgi_script_name;
-        include        fastcgi_params;
-    }
+/etc/php.ini
 
 ```
+;cgi.fix_pathinfo=1
+cgi.fix_pathinfo=0
+```
+
 
 - /usr/share/nginx/html 是脚本项目的路径
+
+```nginx
+server {
+
+    listen 80;
+    server_name mjtown.cn; 
+    set $root_path  '/usr/share/nginx/php/blog';
+    root $root_path;
+
+    error_log /var/log/nginx/eee.error.log warn;
+
+    index index.php index.html index.htm; 
+
+    try_files $uri $uri/ @rewrite; 
+
+    location @rewrite { 
+        rewrite ^/(.*)$ /index.php?_url=/$1; 
+    } 
+
+    location ~ \.php { 
+        
+        # php-fpm是绑定本地9000端口，nginx通过fastcgi_pass 127.0.0.1:9000;将请求转发到本地9000端口上
+        fastcgi_pass 127.0.0.1:9000; 
+        fastcgi_index /index.php; 
+
+        fastcgi_split_path_info    ^(.+\.php)(/.+)$; 
+        fastcgi_param PATH_INFO    $fastcgi_path_info; 
+        # 网上搜罗的很多都有这一条配置，是个很大的坑，千万要注释掉， 不然会 access denied
+        #fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info; 
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; 
+        include            fastcgi_params;
+    } 
+
+    location ~* ^/(css|img|js|flv|swf|download)/(.+)$ { 
+        root $root_path; 
+    } 
+
+    location ~ /\.ht { 
+        deny all; 
+    }
+}
+```
+
 
