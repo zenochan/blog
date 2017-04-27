@@ -33,3 +33,5 @@ Or, if you don't want/need a background service you can just run:
 $ mysqladmin -u root -p password yourpassword
 Enter pass word:   #输入现在的用户密码
 ```
+
+- [CentOS用yum安装、配置MariaDB](https://my.oschina.net/iluckyboy/blog/215949)

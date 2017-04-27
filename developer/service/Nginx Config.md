@@ -19,6 +19,7 @@ $ ps -ef | grep nginx
 /etc/nginx/conf.d/*.conf
 
 ### 配置 Nginx 转发到 tomcat
+ - [Disabling URL decoding in nginx proxy](http://serverfault.com/questions/459369/disabling-url-decoding-in-nginx-proxy)
 
 ```nginx
 server { 
