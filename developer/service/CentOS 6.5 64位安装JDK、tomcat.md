@@ -13,7 +13,7 @@
 - 如果有，卸载
 
 ```bash
-# rpm -e  --nodeps  jdk-1.6.0_10-fcs 
+# rpm -e  --nodeps  jdk-1.6.0_10-fcs
 ```
 
 - 下载 jdk，安装

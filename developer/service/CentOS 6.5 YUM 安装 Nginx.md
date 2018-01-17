@@ -18,7 +18,7 @@
 	```bash
 	# yum install nginx
 	```
-	
+
 4. 把 nginx 加入到开机启动
 
 	```bash
