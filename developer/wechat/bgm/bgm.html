@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <title>微信 BGM</title>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <link href="bgm.css" rel="stylesheet">
+  </head>
+  <body>
+    <i class="icon-music-outer" id="outer">
+      <i class="forbid icon-music" onclick="musicPause()">
+        <img class="music activeMusic" src="./music.png"/>
+      </i>
+      <i class="forbid icon-forbidMusic" style="display: none;" onclick="musicPlay()">
+        <img class="music" src="./music.png"/>
+      </i>
+      <audio loop autoplay="autoplay" controls id="bgMusic" src="./bgm.mp3" hidden>
+      </audio>
+    </i>
+    <script src="bgm.js"></script>
+  </body>
+</html>

@@ -2,6 +2,7 @@
 
 - 收录于：2018年01月11日
 - 通过 `postion:fixed` 和 `left` 属性实现
+- <font color=red>在复杂的页面表现比较卡顿</font>
 
 
 ![](https://github.com/zhongjie-chen/blog/blob/gh-pages/img/wx-drawer.gif?raw=true)

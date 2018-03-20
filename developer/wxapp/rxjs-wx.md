@@ -10,34 +10,47 @@
 
 # 安装
 
-  1. 下载
+1. 下载
+  - 使用github
+  > `git clone https://github.com/yalishizhude/RxWX.git`
+  - 使用npm
+  > `npm i rxjs-wx`
+  > 拷贝根目录下的Rx.js和RxWX.js到项目目录
 
-使用github
-
-`git clone https://github.com/yalishizhude/RxWX.git`
-
-使用npm
-
-`npm i rxjs-wx`
-
-  1. 拷贝根目录下的Rx.js和RxWX.js到项目目录
-
-  2. 引用文件
-
-`import obs from 'RxWX.js'`
+2. 引用文件
+    `import rxwx from 'RxWX.js'`
 
 # 使用
 
 ## 使用Rx.js
+```
+// 目录结构
+- pages
+- app.js
+- Rx.js
+- RxWX.js
 
-    // 目录结构 - pages - app.js - Rx.js - RxWX.js // app/js import obs from 'RxWX.js' //获取系统信息 obs.getSystemInfoSync() .subscribe(x => console.log(x))
+// app/js
+import * as Rx from 'Rx.js'
+//获取系统信息
+Rx.Observable.of(1).subscribe(x => console.log(x))
+// 1
+```
 
 ## 使用RxWX.js
+```
+// 目录结构
+- pages
+- app.js
+- Rx.js
+- RxWX.js
 
-    // 目录结构 - pages - app.js - Rx.js - RxWX.js // app/js import >md.png COPYING Config.plist CopyAsMarkdown-demo.mp4 README.md _Signature.plist html2md.sh html2text.py as Rx from 'Rx.js' //获取系统信息 Rx.Observable.of(1) .subscribe(x => console.log(x)) // 1
+// app/js
 
-
-
+import obs from 'RxWX.js'
+//获取系统信息
+obs.getSystemInfoSync().subscribe(x => console.log(x))
+```
 
   [99a2ff97]: https://juejin.im/entry/59cfa7976fb9a00a4746f9f3 "掘金"
   [8b567c12]: https://www.npmjs.com/package/rxjs-wx "npmjs"
