@@ -27,56 +27,61 @@ window.history.state
 ```ts
 @IonicPage()
 @Component({
-  selector: 'page-activity',
-  templateUrl: 'activity.html',
+selector: 'page-index',
+templateUrl: 'index.html',
 })
-export class ActivityPage
+export class IndexPage
 {
-
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private modal: ModalController)
-  {
-  }
-
-
-  // 监听 back event
-  back: (event: any) => any;
-  // 通过 timestamp 判断是不是当前页面回退
-  time = new Date().getTime();
-
   ionViewDidLoad()
   {
-    console.log('ionViewDidLoad InfoPage');
-    this.back = e => {
-      // 这里获取到的 state 实际上是 popstate 后的 data, so 后面的代码需要替换前一个 state data
-      if (window.history.state.time == this.time) {
-        this.navCtrl.pop().catch(e => console.error(e));
-        // 注销监听
-        window.removeEventListener("popstate", this.back);
-        this.back = null;
-
-        // 处理其他需要操作的事件， 如 dismiss modal
-      }
-    };
-    window.addEventListener("popstate", this.back, false);
-
-    // 设置前一个和将要压入的 state data 数据
-    window.history.replaceState({time: this.time, active: false}, null, null);
-    window.history.pushState({time: this.time, active: true}, null, null);
+    Back.onIonViewDidLoad(this);
   }
 
   ionViewWillUnload()
   {
-    console.log('ionViewWillUnload InfoPage');
+    Back.onIonViewWillUnload(this);
+  }
+}
+```
+
+- back.ts
+```ts
+export class Back
+{
+  public static onIonViewDidLoad(page: any)
+  {
+    console.log('ionViewDidLoad', page.constructor.name);
+    page.time = new Date().getTime();
+    page.back = e => {
+      // 这里获取到的 state 实际上是 popstate 后的 data, so 后面的代码需要替换前一个 state data
+      if (window.history.state.time == page.time) {
+        page.navCtrl.pop().catch(e => console.error(e));
+        // 注销监听
+        window.removeEventListener("popstate", page.back);
+        page.back = null;
+
+        // 处理其他需要操作的事件， 如 dismiss modal
+      }
+    };
+    window.addEventListener("popstate", page.back, false);
+
+    // 设置前一个和将要压入的 state data 数据
+    window.history.replaceState({time: page.time, active: false}, null, null);
+    window.history.pushState({time: page.time, active: true}, null, null);
+  }
+
+  public static onIonViewWillUnload(page: any)
+  {
+    console.log('ionViewWillUnload', page.constructor.name);
     // 注销监听器
-    this.back && window.removeEventListener("popstate", this.back);
-    if(window.history.state.time == this.time && window.history.state.active){
+    page.back && window.removeEventListener("popstate", page.back);
+    if (window.history.state.time == page.time && window.history.state.active) {
       // 如果不是通过 back 回退的，需要手动回退一个状态
       window.history.back();
     }
   }
 }
+
 ```
 
 
