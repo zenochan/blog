@@ -3,8 +3,6 @@
 - [Java高并发秒杀API详解][0cae71e5]
 - [nguSeckill - nnngu][22f4ef5e]
 
-
-
 ### MySQL 锁
 - 页级:引擎 BDB。
 - 表级:引擎 MyISAM ， 理解为锁住整个表，可以同时读，写不行
@@ -58,7 +56,7 @@ beginTranse(开启事务)
 
 try{
 
-    //quantity为请求减掉的库存数量  
+    //quantity为请求减掉的库存数量
     $dbca->query('update s_store set amount = amount - quantity where postID = 12345');
 
     $result = $dbca->query('select amount from s_store where postID = 12345');
